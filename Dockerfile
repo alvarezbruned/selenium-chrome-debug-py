@@ -30,3 +30,5 @@ RUN pip3 install requests --user
 
 RUN pip3 install pocketsphinx --user
 RUN pip3 install requests --user
+
+RUN pip3 install deepspeech --user
