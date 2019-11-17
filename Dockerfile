@@ -30,11 +30,10 @@ RUN touch /root/.Xauthority
 RUN pip install --upgrade pip
 RUN pip3 install --upgrade pip
 RUN echo "python3 /home/seluser/process.py &" >> /opt/bin/entry_point.sh
-RUN pip3 install inotify
 USER seluser
 RUN XAUTHORITY=/home/seluser/.Xauthority pip3 install pyautogui --user
+RUN pip3 install inotify --user
 
-RUN pip3 install requests --user
 RUN touch /home/seluser/process.py
 RUN chmod +x /home/seluser/process.py
 
