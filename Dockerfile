@@ -20,13 +20,12 @@ RUN apt-get update \
   && apt-get install -y ffmpeg \
   && pip install --upgrade pip \
   && pip3 install --upgrade pip \
-  --no-install-recommends \
-  && rm -rf /var/lib/apt/lists/*
-RUN touch /root/.Xauthority \
+  && touch /root/.Xauthority \
   && touch /home/seluser/.Xauthority \
   && chown seluser:seluser /home/seluser/.Xauthority \
-  && touch /root/.Xauthority
-USER seluser
-RUN XAUTHORITY=/home/seluser/.Xauthority pip3 install pyautogui --user
-RUN pip3 install inotify_simple --user
+  && touch /root/.Xauthority \
+  && XAUTHORITY=/home/seluser/.Xauthority pip3 install pyautogui \
+  && pip3 install inotify_simple \
+  && rm -rf /var/lib/apt/lists/*
 
+USER seluser
