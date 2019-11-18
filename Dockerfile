@@ -10,7 +10,6 @@ RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 2
 
 RUN update-alternatives --set python3 /usr/bin/python3.6
 RUN update-alternatives --remove python3 /usr/bin/python3.5
-RUN update-alternatives --list python3
 RUN python --version
 RUN python3 --version
 
@@ -29,7 +28,7 @@ RUN chown seluser:seluser /home/seluser/.Xauthority
 RUN touch /root/.Xauthority
 RUN pip install --upgrade pip
 RUN pip3 install --upgrade pip
-RUN echo "python3 /home/seluser/process.py &" >> /opt/bin/entry_point.sh
+RUN echo "sleep 20s && python3 /home/seluser/process.py &" >> /opt/bin/entry_point.sh
 USER seluser
 RUN XAUTHORITY=/home/seluser/.Xauthority pip3 install pyautogui --user
 RUN pip3 install inotify_simple --user
