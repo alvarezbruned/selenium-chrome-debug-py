@@ -10,7 +10,7 @@ RUN \
       libssl-dev \
       openssl \
   && \
-  add-apt-repository -y ppa:jonathonf/python-3.6 && \
+  add-apt-repository -y ppa:deadsnakes/ppa && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive \
     apt-get install -y \
@@ -24,32 +24,35 @@ RUN \
   DEBIAN_FRONTEND=noninteractive \
     apt-get install -y \
       python-pip \
-      python3-pip \
-      install scrot \
   && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* && \
+  curl https://bootstrap.pypa.io/get-pip.py | sudo -H python3.6
+RUN \
   pip install --no-cache-dir python-xlib && \
-  pip3 install --no-cache-dir python3-xlib \
+  pip3 install --no-cache-dir \
+    inotify_simple \
+    python3-xlib \
   && \
+  apt-get update && \
   DEBIAN_FRONTEND=noninteractive \
     apt-get install -y \
+      ffmpeg \
       python3-tk \
       python3-dev \
-      ffmpeg \
+      scrot \
   && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/*
+RUN \
   touch \
     /root/.Xauthority \
     /home/seluser/.Xauthority \
   && \
-  chown -v seluser:seluser /home/seluser/.Xauthority && \
-  pip install --no-cache-dir --upgrade pip && \
-  pip3 install --no-cache-dir --upgrade pip \
+  chown -v seluser:seluser /home/seluser/.Xauthority \
   && \
   XAUTHORITY=/home/seluser/.Xauthority \
     pip3 install --no-cache-dir \
-      pyautogui \
-      inotify_simple \
-  && \
-  apt-get clean && \
-  rm -rfv /var/lib/apt/lists/*
+      pyautogui
 
 USER seluser
