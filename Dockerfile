@@ -27,7 +27,7 @@ RUN \
   && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \
-  curl https://bootstrap.pypa.io/get-pip.py | sudo -H python3.6
+  curl --fail --location --show-error --silent https://bootstrap.pypa.io/get-pip.py | sudo -H python3.6
 RUN \
   pip install --no-cache-dir python-xlib && \
   pip3 install --no-cache-dir \
