@@ -38,8 +38,9 @@ RUN \
 RUN \
   touch \
     /root/.Xauthority \
+    /home/seluser/.Xauthority \
   && \
-  XAUTHORITY=/home/root/.Xauthority \
+  XAUTHORITY=/root/.Xauthority \
     pip3 install --no-cache-dir \
       pyautogui
 
