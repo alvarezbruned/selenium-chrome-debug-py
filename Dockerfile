@@ -44,3 +44,4 @@ RUN \
     pip3 install --no-cache-dir \
       pyautogui
 
+USER seluser
